@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Assignment 5</title>
+	<!--Create custom directive using isolate scope. -->
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var mod=angular.module("myApp",[]);
+		mod.controller("control",function($scope){
+			$scope.name="Your name";
+			$scope.age="Your age";
+			$scope.email="Your email";
+			$scope.number="Your phone number";
+		});
+		mod.directive("ngDir",function(){ 
+			return {
+				template:'<div class="container">name: {{name}}<br> age: {{age}}<br> email:{{email}} <br> Phone number: {{number}}</div>',
+				restrict:'E',
+				replace:'false',
+				scope:'='				//Isolated Scope
+			}
+		});
+		
+	</script>
+</head>
+<body ng-app="myApp" ng-controller="control">
+		<form>
+			<div class="form-group">
+			<label>	Name :</label> <input type="text" placeholder=" Enter your name " ng-model="name">  </input> <br>
+			</div>
+			<div class="form-group">
+			<label> Age :</label> <input type="text" placeholder=" Enter your age " ng-model="age">  </input> <br>
+			</div>
+			<div class="form-group">
+			<label> Email :</label> <input type="text" placeholder=" Enter your email " ng-model="email">  </input> <br>
+			</div>
+			<div class="form-group">
+			<label> Phone Number :</label> <input type="text" placeholder=" Enter your Phone Number " ng-model="number">  </input> <br>
+			</div>
+		</form>
+		<ng-dir> </ng-dir>
+</body>
+</html>

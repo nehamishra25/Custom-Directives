@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular JS</title>
+	<script type="text/javascript" src=https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		var module=angular.module("myCustomDirective",[]);
+		module.directive("ngDir1",function(){ //Matching Directive as Element
+			return {
+				template:"<button ng-click='popupFunction()'>Element</button>",
+				restrict:'E'
+			}
+		});
+		module.directive("ngDir2",function(){ //Matching Directive as Class
+			return {
+				template:"<button ng-click='popupFunction()'>Class</button>",
+				restrict:'C'
+			}
+		});
+		module.directive("ngDir3",function(){ //Matching Directive as Attribute
+			return {
+				template:"<button ng-click='popupFunction()'>Attribute</button>",
+				restrict:'A',
+			}
+		});
+		module.directive("ngDir4",function(){   //Matching Directive as Comment
+			return { 
+				template : '<button ng-click="popupFunction()">Comment</button>',
+				restrict : 'M',
+				replace : 'false'
+			}
+		});
+		module.controller("control",function($scope){ //Controller
+			$scope.popupFunction = function(){
+				alert('Woah! You clicked it and yes it pops.');
+			}
+		})
+	</script>
+</head>
+<body ng-app="myCustomDirective" class="container" ng-controller="control">
+	<table class="table table-responsive table-bordered table-striped">
+		<thead>
+			<th><h1>Please click over the following buttons to see if they pop up or not!</h1></th>
+		</thead>
+		<tbody>
+			<tr class="info"><td><ng-dir1></ng-dir1></td></tr>
+			<tr class="info"><td><div class="ng-dir2"></div></td></tr>
+			<tr class= "info"><td><div ng-dir3></div></td></tr>
+		</tbody>
+	</table>
+	<br><br><!-- directive: ng-dir4 -->
+</body>
+</html>
